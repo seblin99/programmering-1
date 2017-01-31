@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html lang="sv">
+<HEAD>
+<meta charset="utf-8" />
+<title> boll som studsar</title>
+<style>
+#plan {
+	border: 2px solid green;
+	width: 400px;
+	height: 300px;
+	position: absolute;
+	left: 100px;
+	top: 100px;
+}
+#boll {
+	background-color: red;
+	border-radius: 50%;
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+	</style>
+	</HEAD>
+	<body>
+	<h1>boll som studsar</h1>
+	<div id="plan">
+  	  <div id="boll"></div>
+	</div>
+	<script>
+	var boll   = document.getElementById("boll");
+	var xspeed = 2; 
+	var yspeed = 2;
+	var x      = 10;
+	var y      = 30;
+	function moveball () {
+		if ( x > 380 || x < 1 ) {
+			xspeed = -xspeed;
+		}	
+		if ( y > 280 || y <1) {
+			yspeed = -yspeed;
+		}
+		x = x + xspeed;
+		y = y + yspeed;
+		boll.style.left = x + "px";
+		boll.style.top  = y + "px";
+		// console.log(y);
+		setTimeout(moveball, 20);
+	}
+	moveball();
+ </script>
+ </body>
+ </html>

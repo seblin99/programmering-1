@@ -1,0 +1,22 @@
+/*function {
+       Math.sqrt(X)
+  */     
+}
+function nexPrime (n){
+       var candidate = n+2 ;
+       while (isPrime(candidate)===false){
+              candidate + = 2 ;
+       }
+       return candidate
+}
+function isPrime(n){
+       var max = Math.sqrt(n);
+}
+if (n%2===0) {
+       return false;
+}
+var test =3 
+while (n%test && test < emax){
+       test+=2
+     }
+return test > max;
