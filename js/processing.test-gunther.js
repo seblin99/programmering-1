@@ -1,6 +1,7 @@
 var sketchProc = function(processingInstance) {
  with (processingInstance) {
-    size(400, 400); 
+    var canvas_size = 300;
+    size(canvas_size, canvas_size); 
     frameRate(50);
  
     // ProgramCodeGoesHere
@@ -26,13 +27,13 @@ var sketchProc = function(processingInstance) {
             if ( xPosition[i] <= faceSize[i]/2 ) {
                 xSpeed[i] = Math.abs(xSpeed[i]);
             }
-            if ( xPosition[i] >= 400 - faceSize[i]/2 ) {
+            if ( xPosition[i] >= canvas_size - faceSize[i]/2 ) {
                 xSpeed[i] = -Math.abs(xSpeed[i]);
             }
             if ( yPosition[i] <= faceSize[i]/2 ) {
                 ySpeed[i] = Math.abs(ySpeed[i]);
             }
-            if ( yPosition[i] >= 400 - faceSize[i]/2 ) {
+            if ( yPosition[i] >= canvas_size - faceSize[i]/2 ) {
                 ySpeed[i] = -Math.abs(ySpeed[i]);
             }
 
