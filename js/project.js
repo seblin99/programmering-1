@@ -11,9 +11,19 @@ var sketchProc = function(processingInstance) {
 
 		var draw = function (){
 			line(0,390,400,390);
-			line(200,10,200,50);
-		};
+			line(200,390,200,150);
+		
 		// p1 
+		var player1 = function(x){
+			line(x,100,x,390)
+		}
+
+
+	 	}
+		
+		}
+
+		}
     }
 };
 var canvas = document.getElementById("mycanvas");
