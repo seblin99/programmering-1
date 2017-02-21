@@ -1,0 +1,6 @@
+fill(white);
+frameRate(50);
+function = plane (){
+	line(0,10,400,10);
+	line (200,10,400,400)
+}
