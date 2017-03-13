@@ -29,20 +29,22 @@ var sketchProc = function(processingInstance) {
 
 			}
 		}
-		var ballX= 320
-		var ballY = 10
-		var ballSpeedY = 0.5
-		var ballspeedX=0.5
-		var ballacelration = 0.5
-		var ball = function(){
+		var ballX = 10;
+		var ballY = 200;
+		var ballSpeedY = 2.5;
+		var ballspeedX = 1.2;
+		var ballaccelerationY = 0.02;
+		var ball = function() {
 			fill (0,0,0);
+			ballX += ballspeedX;
+			ballSpeedY -= ballaccelerationY;
+			ballY -= ballSpeedY;
+
+
 			ellipse(ballX,ballY,30,30);
-			ballacelration+=-0,01
-			ballX+=ballspeedX;
-			ballY+=ballSpeedY;
+			
 
-			console.log("ball called")
-
+			// console.log("ball called")
 		}
 
 		
@@ -52,20 +54,20 @@ var sketchProc = function(processingInstance) {
 			line(0,390,400,390);
 			line(200,390,200,150);
 		}
-		var armsfrombody = 25
-		var lenghtplayer = 50
-		var player1 = function(x) {
-			line(x,300,x,300-lenghtplayer);
-			line(x,300,x+armsfrombody,150-lenghtplayer)
-			line(x,300,x-armsfrombody,150-lenghtplayer)
-			line(x,300,x+armsfrombody,lenghtplayer/3+300)
-			line(x,300,x-armsfrombody,lenghtplayer/3+300)
-			
+		
+		var player = function(x) {
+			line(x-20,390,x,350);
+			line(x+20,390,x,350);
+			line(x,350,x,300);
+			line(x,300,x+20,325);
+			line(x,300,x-20,325);
+
 			// console.log("Inuti player1");
 		}	
 		var movePlayer1 = function(step) {
 			// Ändra player1pos beroende på nedtryckt tangent
 			player1pos += step;
+			console.log("movePlayer1 anropad");	
 		}
 // p1 
 		var matchtime = 5	
@@ -79,10 +81,13 @@ var sketchProc = function(processingInstance) {
 			// console.log(matchtimeframes);
 		}
 		var keyPressed = function() {
-			  //if (key == 'b' || key == 'B') {
-    				console.log("Key is pressed");
-			    	movePlayer1(2)
-			    //}
+			if (key == '66' || key == '98') {
+			    	movePlayer1(2);
+			} else if ( key == 86 || key == 118 ) {
+				movePlayer1(-2);
+			} else {
+				console.log("Värdet av 'key' är " + key);
+			}
 				
 		}
 
@@ -92,7 +97,7 @@ var sketchProc = function(processingInstance) {
 		var draw = function () {
 			background();
 			playingfield();
-		    player1(player1pos);
+		    player(player1pos);
 		  	fill(255, 255, 255);
 		    if ( matchtimeframes >= 1 ) {
 			  	timer();
