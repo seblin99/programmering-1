@@ -32,8 +32,9 @@ var sketchProc = function(processingInstance) {
 		var ballX = 10;
 		var ballY = 200;
 		var ballSpeedY = 2.5;
-		var ballspeedX = 1.2;
+		var ballspeedX = 0.6;
 		var ballaccelerationY = 0.02;
+		var numBounces = 0;
 		var ball = function() {
 			fill (0,0,0);
 			ballX += ballspeedX;
@@ -42,7 +43,18 @@ var sketchProc = function(processingInstance) {
 
 
 			ellipse(ballX,ballY,30,30);
-			
+			if ( ballY >= 390 && ballSpeedY < 0 ) {
+				// Bollen vänder
+				ballSpeedY = -0.7  * ballSpeedY;
+				numBounces++;
+				// Använd antal studs i en if sats...'
+				if ( numBounces>=2){
+					//alert(bollen ur spel)
+					//poäng
+				};
+				// console.log(ballSpeedY);
+
+			}
 
 			// console.log("ball called")
 		}
@@ -69,6 +81,11 @@ var sketchProc = function(processingInstance) {
 			player1pos += step;
 			console.log("movePlayer1 anropad");	
 		}
+		//moveplayer2 
+		var movePlayer2 = function(step) {
+			// Ändra player1pos beroende på nedtryckt tangent
+			player2pos += step;
+		}
 // p1 
 		var matchtime = 5	
 		var matchtimeframes = matchtime * frames_per_second;
@@ -81,6 +98,7 @@ var sketchProc = function(processingInstance) {
 			// console.log(matchtimeframes);
 		}
 		var keyPressed = function() {
+			/*
 			if (key == '66' || key == '98') {
 			    	movePlayer1(2);
 			} else if ( key == 86 || key == 118 ) {
@@ -88,16 +106,62 @@ var sketchProc = function(processingInstance) {
 			} else {
 				console.log("Värdet av 'key' är " + key);
 			}
-				
+			*/
+			// Plustecknet konverterar från objekt till Number
+			switch (+key) {
+				//player 1 move 
+				case 66:
+				case 98:
+				    movePlayer1(2);
+				    break;
+			    case 86:
+			    case 118:
+			    	movePlayer1(-2);
+			    	break;
+			    	//player 2 move 
+			    case 113:
+			    case 81:
+			    	movePlayer2(-2)
+			    	break;
+			    case 119:
+			    case 87:
+			    	movePlayer2(2)
+			    		break;
+			    case 32:
+			    	if (Math.abs(player1pos-ballX) < 20) {
+			    	   	ballSpeedY =  Math.abs(ballSpeedY);
+						ballspeedX = -Math.abs(ballspeedX)/ballspeedX*0.6			    	
+				    }
+				    break;
+			    case  65535:
+				    if (Math.abs(player2pos-ballX)<20){
+				    	/*ballSpeedY =  Math.abs(ballSpeedY) /Math.pow(0.7, -numBounces);
+				    	numBounces = 0;
+						ballspeedX = -Math.abs(ballspeedX)/ballspeedX*0.6*/
+						if (ballspeedX<0){
+							ballspeedX== 0.6
+						}	
+						if (ballspeedX>0){
+							ballspeedX==-0.6
+						}
+				    }
+				    break;		
+		    	default:
+					console.log("Värdet av 'key' är " + key);
+
+			}
 		}
 
 				
 		// Globala variabler som delas mellan funktioner
+		var player2pos = 300;
 		var player1pos = 30;
 		var draw = function () {
+			
 			background();
 			playingfield();
 		    player(player1pos);
+		    player(player2pos);
 		  	fill(255, 255, 255);
 		    if ( matchtimeframes >= 1 ) {
 			  	timer();
@@ -114,3 +178,4 @@ var sketchProc = function(processingInstance) {
 }
 var canvas = document.getElementById("mycanvas");
 var processingInstance= new Processing(canvas,sketchProc);
+canvas.focus();
