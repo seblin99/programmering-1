@@ -58,7 +58,21 @@ var sketchProc = function(processingInstance) {
 
 			// console.log("ball called")
 		}
+		var score1 = 0 
+		var score2 = 0 
+		var scoreboard = function(){
+			text(10,60)
+		}
 
+		var score = function (){
+			text(score1 score2,10,40);			
+				if (ballX => 200){
+				score1+=1;
+			} 
+			if (ballX =<1){
+				score2+=1;
+			}
+		}
 		
 		var playingfield = function () {
 			// Rita bakgrunden TODO
@@ -87,7 +101,7 @@ var sketchProc = function(processingInstance) {
 			player2pos += step;
 		}
 // p1 
-		var matchtime = 5	
+		var matchtime = 100	
 		var matchtimeframes = matchtime * frames_per_second;
 		console.log(matchtimeframes);
 		var timer = function() {
