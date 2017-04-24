@@ -29,12 +29,17 @@ var sketchProc = function(processingInstance) {
 
 			}
 		}
-		var ballX = 10;
-		var ballY = 200;
-		var ballSpeedY = 2.5;
-		var ballspeedX = 0.6;
-		var ballaccelerationY = 0.02;
-		var numBounces = 0;
+		var ballstartvalues = function(){
+		var ballMoveX = 0
+		var ballMoveY = 0;
+		 ballX = 10;
+		 ballY = 200;
+		 ballSpeedY = 2.5;
+		 ballspeedX = 0.6;
+		 ballaccelerationY = 0.02;
+		 numBounces = 0;
+	}
+			ballstartvalues();
 		var ball = function() {
 			fill (0,0,0);
 			ballX += ballspeedX;
@@ -49,6 +54,7 @@ var sketchProc = function(processingInstance) {
 				numBounces++;
 				// Använd antal studs i en if sats...'
 				if ( numBounces>=2){
+					score();
 					//alert(bollen ur spel)
 					//poäng
 				};
@@ -61,15 +67,15 @@ var sketchProc = function(processingInstance) {
 		var score1 = 0 
 		var score2 = 0 
 		var scoreboard = function(){
-			text(10,60)
+			text("score1: " + score1 + " score2: " + score2, 10,40);	
 		}
 
 		var score = function (){
-			text(score1 score2,10,40);			
+					
 				if (ballX => 200){
 				score1+=1;
 			} 
-			if (ballX =<1){
+			if (ballX <=1){
 				score2+=1;
 			}
 		}
@@ -95,6 +101,7 @@ var sketchProc = function(processingInstance) {
 			player1pos += step;
 			console.log("movePlayer1 anropad");	
 		}
+		
 		//moveplayer2 
 		var movePlayer2 = function(step) {
 			// Ändra player1pos beroende på nedtryckt tangent
@@ -122,44 +129,51 @@ var sketchProc = function(processingInstance) {
 			}
 			*/
 			// Plustecknet konverterar från objekt till Number
-			switch (+key) {
-				//player 1 move 
-				case 66:
-				case 98:
-				    movePlayer1(2);
-				    break;
-			    case 86:
-			    case 118:
-			    	movePlayer1(-2);
-			    	break;
-			    	//player 2 move 
-			    case 113:
-			    case 81:
-			    	movePlayer2(-2)
-			    	break;
-			    case 119:
-			    case 87:
-			    	movePlayer2(2)
-			    		break;
-			    case 32:
-			    	if (Math.abs(player1pos-ballX) < 20) {
+			var moveplayer1case=0;
+			var moveplayer2case=0;
+			var keyPressed = function () {
+     			switch ( +keyCode ) {
+     				case 66:
+     				case 98:
+     					moveplayer1case = 1
+     					break;
+     				case 86:
+     				case 118:
+     			   		moveplayer1case = -1
+     					break;
+     			//player 1 moved
+     				case 113:
+     				case 81:
+     					moveplayer2case = 1
+     					break;
+     				case 119:
+     				case 87:
+     					moveplayer2case = -1
+     					break;
+     				case 32:
+     					if (Math.abs(player1pos-ballX) < 20) {
 			    	   	ballSpeedY =  Math.abs(ballSpeedY);
-						ballspeedX = -Math.abs(ballspeedX)/ballspeedX*0.6			    	
-				    }
-				    break;
-			    case  65535:
-				    if (Math.abs(player2pos-ballX)<20){
+						ballspeedX = -Math.abs(ballspeedX)/ballspeedX*0.6		
+				}		
+				break;
+
+				case  65535:
+				    if (Math.abs(player2pos-ballX) < 20) {
 				    	/*ballSpeedY =  Math.abs(ballSpeedY) /Math.pow(0.7, -numBounces);
 				    	numBounces = 0;
 						ballspeedX = -Math.abs(ballspeedX)/ballspeedX*0.6*/
-						if (ballspeedX<0){
-							ballspeedX== 0.6
+						if (ballspeedX < 0) {
+							ballspeedX = 0.6;
 						}	
-						if (ballspeedX>0){
-							ballspeedX==-0.6
+						else if (ballspeedX > 0 ) {
+							ballspeedX =-0.6;
 						}
 				    }
 				    break;		
+
+
+
+			
 		    	default:
 					console.log("Värdet av 'key' är " + key);
 
@@ -185,11 +199,14 @@ var sketchProc = function(processingInstance) {
 		    }
 		  	// console.log("draw called");
 		  	ball();
-		   
+		  	scoreboard();
+		  
 		}
 
 	}
 }
+}
+
 var canvas = document.getElementById("mycanvas");
 var processingInstance= new Processing(canvas,sketchProc);
 canvas.focus();
