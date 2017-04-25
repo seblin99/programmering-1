@@ -72,7 +72,7 @@ var sketchProc = function(processingInstance) {
 
 		var score = function (){
 					
-				if (ballX => 200){
+				if (ballX >=200){
 				score1+=1;
 			} 
 			if (ballX <=1){
@@ -169,11 +169,7 @@ var sketchProc = function(processingInstance) {
 							ballspeedX =-0.6;
 						}
 				    }
-				    break;		
-
-
-
-			
+				    break;	
 		    	default:
 					console.log("Värdet av 'key' är " + key);
 
