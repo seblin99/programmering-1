@@ -34,9 +34,12 @@ var sketchProc = function(processingInstance) {
 				ballSpeedY = 2
 				ballspeedX = 0.3
 			}
-			if (time2- time1) 
+			if (time2- time1>500) {
+				ballSpeedY = 5
+				ballspeedX = 0.5
 
 		}
+	}
 		var ballstartvalues = function() {
 			var ballMoveX = 0;
 			var ballMoveY = 0;
@@ -54,6 +57,7 @@ var sketchProc = function(processingInstance) {
 			ballX += ballspeedX;
 			ballSpeedY -= ballaccelerationY;
 			ballY -= ballSpeedY;
+
 
 
 			ellipse(ballX,ballY,30,30);
