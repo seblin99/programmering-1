@@ -84,7 +84,7 @@ var sketchProc = function(processingInstance) {
 			text("score1: " + score1 + " score2: " + score2, 10,40);
 
 		};
-
+			var palyerinturn = 1 
 		var score = function () {
 			if (ballX >= 200) {
 				score1+=1;
@@ -157,11 +157,18 @@ var sketchProc = function(processingInstance) {
 				moveplayer2case = -1;
 				break;
 			case 32:
-				if (Math.abs(player1pos-ballX) < 20) {
+				if (Math.abs(player1pos-ballX) < 20 && palyerinturn = 1) {
 					ballSpeedY =	Math.abs(ballSpeedY);
 					ballspeedX = -Math.abs(ballspeedX) / ballspeedX * 0.6;	
-
+					palyerinturn = 2
 				}		
+				break;
+			case 120
+				if  (Math.abs(player2pos-ballX) < 20 && palyerinturn = 2){
+				ballSpeedY =	Math.abs(ballSpeedY);
+					ballspeedX = -Math.abs(ballspeedX) / ballspeedX * 0.6;	
+					palyerinturn = 1
+			}
 				break;
 			case  65535:
 				if (Math.abs(player2pos-ballX) < 20) {
