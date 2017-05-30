@@ -16,7 +16,7 @@ var sketchProc = function(processingInstance) {
 		var color3 = 50;
 
 		var background = function () {
-			fill (color1, color2, color3);
+			fill (150,150,150);
 			// console.log("background");
 			rect(0, 0, canvas_size, canvas_size);
 			color1+=0.02;
@@ -30,21 +30,22 @@ var sketchProc = function(processingInstance) {
 			}
 		};
 		var ballspeedvariable = function(){
+
 			if (time2 - time1 < 500 ) {
-				ballSpeedY = 2
-				ballspeedX = 0.3
+				ballSpeedY = 2;
+				ballspeedX = 0.3;
 			}
 			if (time2- time1>500) {
-				ballSpeedY = 5
-				ballspeedX = 0.5
-
+				ballSpeedY = 5;
+				ballspeedX = 0.5;
+			}
 		}
-	}
+		// ballspeedvariable();
 		var ballstartvalues = function() {
 			var ballMoveX = 0;
 			var ballMoveY = 0;
-			ballX = 0;
-			ballY = 200;
+			ballX = 30;
+			ballY = 10;
 			ballSpeedY = 2.5;
 			ballspeedX = 0.6;
 			ballaccelerationY = 0.02;
@@ -66,9 +67,9 @@ var sketchProc = function(processingInstance) {
 				ballSpeedY = -0.7	* ballSpeedY;
 				numBounces++;
 				// Använd antal studs i en if sats...'
-				if ( numBounces>=2){
+				if ( numBounces>=2) {
 					score();
-				ballstartvalues();
+					ballstartvalues();
 					//alert(bollen ur spel)
 					//poäng
 				}
@@ -84,7 +85,19 @@ var sketchProc = function(processingInstance) {
 			text("score1: " + score1 + " score2: " + score2, 10,40);
 
 		};
-			var palyerinturn = 1 
+		if (score1 = 10){
+			alert("player 1 vinst")
+		} 
+		if (score2 = 100){
+				alert("player 1 vinner")
+		}
+		/*if (score1 = 10 score2 = 10){
+			score1 = 0
+			score2 = 0 
+		}*/
+
+			var palyerinturn = 2 
+		}
 		var score = function () {
 			if (ballX >= 200) {
 				score1+=1;
@@ -98,7 +111,7 @@ var sketchProc = function(processingInstance) {
 			// Rita bakgrunden TODO
 			stroke(0);
 			line(0,390,400,390);
-			line(200,390,200,150);
+			//line(200,390,200,150);
 		};
 		
 		var player = function(x) {
@@ -129,6 +142,7 @@ var sketchProc = function(processingInstance) {
 			matchtimeframes -= 1;
 			if (matchtimeframes === 0){
 				console.log("time out");
+				alert("spelet är över");
 			}
 			// console.log(matchtimeframes);
 		};
@@ -157,14 +171,14 @@ var sketchProc = function(processingInstance) {
 				moveplayer2case = -1;
 				break;
 			case 32:
-				if (Math.abs(player1pos-ballX) < 20 && palyerinturn = 1) {
+				if (Math.abs(player1pos-ballX) < 20 && palyerinturn == 1) {
 					ballSpeedY =	Math.abs(ballSpeedY);
 					ballspeedX = -Math.abs(ballspeedX) / ballspeedX * 0.6;	
 					palyerinturn = 2
 				}		
 				break;
-			case 120
-				if  (Math.abs(player2pos-ballX) < 20 && palyerinturn = 2){
+			case 120:
+				if  (Math.abs(player2pos-ballX) < 20 && palyerinturn == 2){
 				ballSpeedY =	Math.abs(ballSpeedY);
 					ballspeedX = -Math.abs(ballspeedX) / ballspeedX * 0.6;	
 					palyerinturn = 1
@@ -239,10 +253,11 @@ var sketchProc = function(processingInstance) {
 			// console.log("draw called");
 			ball();
 			scoreboard();
+
 		};
 	}
 
-};
+ };
 
 var canvas = document.getElementById("mycanvas");
 /* exported processingInstance */
